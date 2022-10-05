@@ -1,0 +1,238 @@
+{
+	"info": {
+		"_postman_id": "79b7c063-8261-443f-8812-901296cce6f6",
+		"name": "Dropbox Testing",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23624728"
+	},
+	"item": [
+		{
+			"name": "Upload a file",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Check a file is uploaded\", function () {\r",
+							"    pm.expect(jsonData.path_display).to.eql(pm.collectionVariables.get(`pathToFile`));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.collectionVariables.set(\"fileHash\", jsonData.content_hash);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Dropbox-API-Arg",
+						"value": "{\"autorename\":false,\"mode\":\"add\",\"mute\":false,\"path\":\"{{pathToFile}}\",\"strict_conflict\":false}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/octet-stream",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{contentBaseUrl}}/2/files/upload",
+					"host": [
+						"{{contentBaseUrl}}"
+					],
+					"path": [
+						"2",
+						"files",
+						"upload"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get the file metadata",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"File hash from the response is equal to the uploaded one\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.content_hash).to.eql(pm.collectionVariables.get(\"fileHash\"));\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"include_deleted\":false,\r\n    \"include_has_explicit_shared_members\":false,\r\n    \"path\": \"{{pathToFile}}\",\r\n    \"include_media_info\":false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{apiBaseUrl}}/get_metadata",
+					"host": [
+						"{{apiBaseUrl}}"
+					],
+					"path": [
+						"get_metadata"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a file",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"path\" : \"{{pathToFile}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{apiBaseUrl}}/delete_v2",
+					"host": [
+						"{{apiBaseUrl}}"
+					],
+					"path": [
+						"delete_v2"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "oauth2",
+		"oauth2": [
+			{
+				"key": "accessTokenUrl",
+				"value": "https://api.dropboxapi.com/oauth2/token",
+				"type": "string"
+			},
+			{
+				"key": "authUrl",
+				"value": "https://www.dropbox.com/oauth2/authorize",
+				"type": "string"
+			},
+			{
+				"key": "tokenName",
+				"value": "DROPBOX",
+				"type": "string"
+			},
+			{
+				"key": "client_authentication",
+				"value": "body",
+				"type": "string"
+			},
+			{
+				"key": "clientSecret",
+				"value": "{{CLIENT_SECRET}}",
+				"type": "string"
+			},
+			{
+				"key": "clientId",
+				"value": "{{CLIENT_ID}}",
+				"type": "string"
+			},
+			{
+				"key": "addTokenTo",
+				"value": "header",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "pathToFile",
+			"value": "/Test.txt"
+		},
+		{
+			"key": "fileHash",
+			"value": ""
+		},
+		{
+			"key": "CLIENT_ID",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "CLIENT_SECRET",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "apiBaseUrl",
+			"value": "https://api.dropboxapi.com/2/files"
+		},
+		{
+			"key": "contentBaseUrl",
+			"value": "https://content.dropboxapi.com"
+		}
+	]
+}
