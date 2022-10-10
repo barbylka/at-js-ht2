@@ -49,8 +49,8 @@ Scenario:
 Authorization type in these tests is OAuth2.0, so in the beginning get new access token.
 
 - If you have NEWMAN on your machine:
-1. Run these tests with `newman run https://www.getpostman.com/collections/1090c70eaed21acf3b54`
+1. Run these tests with `newman run https://www.getpostman.com/collections/bc54c6961e3e8595cc75`
 
 - To open these tests in POSTMAN:
-1. Import to your workspace this collection via link `https://www.getpostman.com/collections/1090c70eaed21acf3b54` or open the file "Dropbox Testing.postman_collection.json" from your cloned version of this proj
+1. Import to your workspace this collection via link `https://www.getpostman.com/collections/bc54c6961e3e8595cc75` or open the file "Dropbox Testing.postman_collection.json" from your cloned version of this proj
 2. Run the collection
