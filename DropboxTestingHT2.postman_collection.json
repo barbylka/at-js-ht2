@@ -182,12 +182,12 @@
 			},
 			{
 				"key": "clientSecret",
-				"value": "•••••••",
+				"value": "{{CLIENT_SECRET}}",
 				"type": "string"
 			},
 			{
 				"key": "clientId",
-				"value": "•••••••",
+				"value": "{{CLIENT_ID}}",
 				"type": "string"
 			},
 			{
