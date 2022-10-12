@@ -45,12 +45,21 @@ Scenario:
 
 ## Setup and running the test suit
 
-**! Make sure: in collection variables you set CLIENT_ID and CLIENT_SECRET of your dropbox app**
-Authorization type in these tests is OAuth2.0, so in the beginning get new access token.
+**! Make sure: in collection or env variables you set CLIENT_ID and CLIENT_SECRET of your dropbox app**
+**UPD!** 0. Set your AUTHORIZATION_CODE variable. Read below how to get it:
 
-- If you have NEWMAN on your machine:
-1. Run these tests with `newman run https://www.getpostman.com/collections/bc54c6961e3e8595cc75`
+1. Make your OAuth app authorization URL like this: (plug in your app ID in place of "APPKEYHERE").
+`https://www.dropbox.com/oauth2/authorize?client_id=APPKEYHERE&response_type=code&token_access_type=offline`
+2. Browse to that page in your browser while signed in to your account and click "Allow" to authorize it.
+3. Copy the resulting authorization code and add it as AUTHORIZATION_CODE collection or env variable. Note! This's a short life code data.
 
 - To open these tests in POSTMAN:
-1. Import to your workspace this collection via link `https://www.getpostman.com/collections/bc54c6961e3e8595cc75` or open the file "Dropbox Testing.postman_collection.json" from your cloned version of this proj
-2. Run the collection
+1. Import to your workspace this collection via link `https://www.getpostman.com/collections/fab21276b8b04f2316f8` or open the file "DropboxTestingHT2_with_authCode.postman_collection" from your cloned version of this proj
+2. Set your AUTHORIZATION_CODE variable
+3. Run the collection
+
+- If you have NEWMAN on your machine:
+Run these tests with `newman run https://www.getpostman.com/collections/fab21276b8b04f2316f8`
+
+
+In case of stuck: the full instruction of AUTHORIZATION_CODE is [here](https://www.dropboxforum.com/t5/Dropbox-API-Support-Feedback/Get-refresh-token-from-access-token/td-p/596739#:~:text=It's%20not%20possible%20to%20get,only%20returns%20an%20access%20token.))
