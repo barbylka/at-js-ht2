@@ -151,6 +151,16 @@
 		"type": "oauth2",
 		"oauth2": [
 			{
+				"key": "redirect_uri",
+				"value": "https://oauth.pstmn.io/v1/browser-callback",
+				"type": "string"
+			},
+			{
+				"key": "useBrowser",
+				"value": false,
+				"type": "boolean"
+			},
+			{
 				"key": "accessTokenUrl",
 				"value": "https://api.dropboxapi.com/oauth2/token",
 				"type": "string"
@@ -172,12 +182,12 @@
 			},
 			{
 				"key": "clientSecret",
-				"value": "{{CLIENT_SECRET}}",
+				"value": "•••••••",
 				"type": "string"
 			},
 			{
 				"key": "clientId",
-				"value": "{{CLIENT_ID}}",
+				"value": "•••••••",
 				"type": "string"
 			},
 			{
