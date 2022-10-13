@@ -54,7 +54,7 @@ Scenario:
 3. Copy the resulting authorization code and add it as AUTHORIZATION_CODE collection or env variable. Note! This's a short life code data.
 
 - To open these tests in POSTMAN:
-1. Import to your workspace this collection via link `https://www.getpostman.com/collections/fab21276b8b04f2316f8` or open the file "DropboxTestingHT2_with_authCode.postman_collection" from your cloned version of this proj
+1. Import to your workspace this collection via link `https://www.getpostman.com/collections/fab21276b8b04f2316f8` or open the file "DropboxTestingHT2_with_auth_OOP.postman_collection" from your cloned version of this proj
 2. Set your AUTHORIZATION_CODE variable
 3. Run the collection
 
