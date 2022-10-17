@@ -1,0 +1,23 @@
+{
+  "name": "at-js-ht2",
+  "version": "1.0.0",
+  "description": "**Testing Dropbox API with Postman**",
+  "main": "index.js",
+  "scripts": {
+    "test": "newman run DropboxTestingHT2.postman_collection.json -e Dev.postman_environment.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/barbylka/at-js-ht2.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/barbylka/at-js-ht2/issues"
+  },
+  "homepage": "https://github.com/barbylka/at-js-ht2#readme",
+  "dependencies": {
+    "newman": "^5.3.2"
+  }
+}
